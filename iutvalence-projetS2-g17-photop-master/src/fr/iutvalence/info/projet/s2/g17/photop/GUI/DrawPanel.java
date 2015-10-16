@@ -32,7 +32,7 @@ public class DrawPanel extends JPanel
 	/**
 	 * The image selected in the JFileChooser (null if not)
 	 */
-	private Image image;
+	private Image selectedImage;
 	
 	/**
 	 * An array of PhotopShape : represents all the PhotopShape draw on the DrawPanel
@@ -46,7 +46,7 @@ public class DrawPanel extends JPanel
 	public DrawPanel(Image img)
 	{
 		this.point = new Pointer();
-		this.image = img;
+		this.selectedImage = img;
 		this.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent e){
 				points.add(new PhotopShape(e.getX() - (point.getSize() / 2), e.getY() - (point.getSize() / 2),point));
@@ -73,7 +73,7 @@ public class DrawPanel extends JPanel
 	{
 		g.setColor(Color.white);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		g.drawImage(this.image, getX(), getY(), null);
+		g.drawImage(this.selectedImage, getX(), getY(), null);
 		
 		for(PhotopShape photopShape : this.points)
 		{
@@ -118,7 +118,7 @@ public class DrawPanel extends JPanel
 	/**
 	 * Erases the last PhotopShape painted
 	 */
-	public void erase()
+	public void eraseLastPaintedShape()
 	{
 		if(this.points.size()!=0)
 		{
@@ -130,25 +130,17 @@ public class DrawPanel extends JPanel
 	/**
 	 * Erases all the PhotopShapes painted
 	 */
-	public void eraseAll()
+	public void eraseAllShapePainted()
 	{
 		this.points = new ArrayList<PhotopShape>();
 		repaint();
 	}
 	
-	/**
-	 * Sets the pointer's color with a given color
-	 * @param c color
-	 */
 	public void setPointerColor(Color c)
 	{
 		this.point.setColor(c);
 	}
 	
-	/**
-	 * Sets the pointer's type with a given type
-	 * @param type type
-	 */
 	public void setPointerType(TypeShape type)
 	{
 		this.point.setShape(type);
@@ -160,13 +152,9 @@ public class DrawPanel extends JPanel
 	 */
 	public void setImage(Image image)
 	{
-		this.image = image;
+		this.selectedImage = image;
 	}
 	
-	/**
-	 * Sets the pointer's size with a given size
-	 * @param size size
-	 */
 	public void setPointerSize(int size)
 	{
 		this.point.setSize(size+this.point.getSize());
