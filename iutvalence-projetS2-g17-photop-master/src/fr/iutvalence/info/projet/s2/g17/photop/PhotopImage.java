@@ -8,25 +8,14 @@ package fr.iutvalence.info.projet.s2.g17.photop;
 public class PhotopImage extends PhotopObject
 {
 	
-	/**
-	 *represents the name of the image
-	 */
-	private String name;
+
+	private String imageName;
 	
-	/**
-	 * represents the extension of the image (bmp, png, jpg)
-	 */
 	private String imageExtension;
 	
-	/**
-	 * represents the state of the image, is it saved or not
-	 */
-	private boolean isSaved;
+	private boolean imageIsSaved;
 	
-	/**
-	 * represents the path of the image
-	 */
-	private String path;
+	private String imagePath;
 	
 	
 	/**
@@ -41,10 +30,10 @@ public class PhotopImage extends PhotopObject
 	public PhotopImage(String path,String name, String imageExtension, boolean isSaved, Position positionOfTheImage, int dimensionOfTheImage)
 	{
 		super(positionOfTheImage,dimensionOfTheImage);
-		this.path = path;
-		this.name = name;
+		this.imagePath = path;
+		this.imageName = name;
 		this.imageExtension = imageExtension;
-		this.isSaved = isSaved;
+		this.imageIsSaved = isSaved;
 	}
 	
 	
